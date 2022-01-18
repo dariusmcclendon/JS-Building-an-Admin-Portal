@@ -33,7 +33,21 @@ async function admin(){
                 })//end body block
             })//end fetch
         })//end event listener
-listItem.append(saveButton)
+        let deleteButton = document.createElement("button")
+        deleteButton.textContent = "Delete"
+        deleteButton.addEventListener("click", async function(){
+            confirm = window.prompt("Are you sure? Say YES to confirm deletion.")
+            if(confirm === 'YES'){
+                await fetch(`http://localhost:3001/removeBook/${book.id}`,{
+                    method: "DELETE"
+                })
+                listItem.removeChild()
+                listItem.remove()
+            }
+        })
+
+    listItem.append(saveButton)
+    listItem.append(deleteButton)
     })//end forEach
 
 
